@@ -82,22 +82,20 @@ namespace FL_KeyForward
         }
 
         public static void SendKeyDown(IntPtr hWnd, char key) {
-            SetForegroundWindow(hWnd);
-            INPUT[] inputs = new INPUT[1];
-            inputs[0] = new INPUT();
-            inputs[0].type = INPUT_KEYBOARD;
-            inputs[0].u.ki.wScan = (ushort)MapVirtualKey(key, 0);
-            inputs[0].u.ki.dwFlags = KEYEVENTF_SCANCODE;
-            SendInput(1, inputs, Marshal.SizeOf(typeof(INPUT)));
+            SendCommand(hWnd, key, KEYEVENTF_SCANCODE);
         }
 
         public static void SendKeyUp(IntPtr hWnd, char key) {
+            SendCommand(hWnd, key, KEYEVENTF_SCANCODE | KEYEVENTF_KEYUP);
+        }
+
+        private static void SendCommand(IntPtr hWnd, char key, uint dwFlags) {
             SetForegroundWindow(hWnd);
             INPUT[] inputs = new INPUT[1];
             inputs[0] = new INPUT();
             inputs[0].type = INPUT_KEYBOARD;
             inputs[0].u.ki.wScan = (ushort)MapVirtualKey(key, 0);
-            inputs[0].u.ki.dwFlags = KEYEVENTF_SCANCODE | KEYEVENTF_KEYUP;
+            inputs[0].u.ki.dwFlags = dwFlags;
             SendInput(1, inputs, Marshal.SizeOf(typeof(INPUT)));
         }
     }

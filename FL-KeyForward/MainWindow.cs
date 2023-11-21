@@ -40,7 +40,7 @@ namespace FL_KeyForward
             if (potentialMatches.Length > 0) {
                 m_flProcess = potentialMatches[0];
                 label1.Text = "Status: Process Found: " + m_flProcess.MainWindowTitle;
-          
+
             }
             else {
                 label1.Text = "Status: Process Not Found";
@@ -54,6 +54,9 @@ namespace FL_KeyForward
         }
 
         private void Hook_KeyPressed(object sender, GlobalKeyboardHook.KeyPressedEventArgs e) {
+            if (e.KeyPressed == Keys.CapsLock) {
+                if (m_isRunning) { SetOff(); } else { SetOn(); }
+            }
             if (m_isRunning) {
                 var keyChar = GetCharFromKeys(e.KeyPressed);
                 FlBridge.SendKeyDown(m_flProcess.MainWindowHandle, keyChar);
