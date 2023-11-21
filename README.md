@@ -1,5 +1,5 @@
 # FL-KeyForward
-Bridge that recieves global keyboard inputs and forwards them to FL Studio, bypassing third party plugin focusing lock off typing keyboard.
+Bridge that receives global keyboard inputs and forwards them to FL Studio, bypassing third party plugin focusing lock off typing keyboard.
 
 Clicking "Allow the plugin to handle keystrokes before the host does", Toggling "Keep focus" and other da fuq settings that probably won't fix the issue are not required anymore. No plugin will ever steal focus from you anymore... how dare it?
 
