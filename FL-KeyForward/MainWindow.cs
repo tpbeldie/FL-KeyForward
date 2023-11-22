@@ -12,7 +12,7 @@ namespace FL_KeyForward
 
         Process m_flProcess;
 
-        private bool m_isRunning = false;
+        bool m_isRunning = false;
 
         GlobalKeyboardHook m_hook;
 
@@ -70,7 +70,7 @@ namespace FL_KeyForward
             }
         }
 
-        public static char GetCharFromKeys(Keys keys) {
+        private void char GetCharFromKeys(Keys keys) {
             int keyCode = (int)(keys & Keys.KeyCode);
             if (keyCode >= 32 && keyCode <= 126) {
                 return (char)keyCode;
